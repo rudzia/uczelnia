@@ -26,7 +26,7 @@ public:
 
     QByteArray Ramka(QByteArray ramka_danych);
     void ZapisDoPliku(QByteArray zbior_ramek);
-    Qvector<double> Srednia_temp(QVector<double> vekt);
+    double Srednia_temp(QVector<double> vekt);
 
 
 private:
@@ -38,9 +38,12 @@ private:
     bool koniec_wyswietlania;
     QTime Stoper;
     int ilosc_ramek;
-    QVector<double> vektor_imped,vektor_ekg,vektor_temp, zmienna_x;
+
+    QVector<double> vektor_imped,vektor_ekg,vektor_temp, zmienna_x,
+    vekt_srednia_TEMP, vekt_20_temp, vekt_usred_temp,zmienna_x2;
+
     const int PIEC_MINUT = 360000;
-    const int MAX_RAMEK = 300;
+    const int MAX_RAMEK = 310;
     double poczatek_Osi_X;
     int bufor_temp20;
 
