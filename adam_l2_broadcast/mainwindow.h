@@ -26,7 +26,8 @@ public:
 
     QByteArray Ramka(QByteArray ramka_danych);
     void ZapisDoPliku(QByteArray zbior_ramek);
-    double Srednia_temp(QVector<double> vekt);
+    double Srednia_sygnalu(QVector<double> vekt);
+    QVector<double> UsunStalaSkladowa(QVector<double> vektImped);
 
 
 private:
@@ -40,12 +41,11 @@ private:
     int ilosc_ramek;
 
     QVector<double> vektor_imped,vektor_ekg,vektor_temp, zmienna_x,
-    vekt_srednia_TEMP, vekt_20_temp, vekt_usred_temp,zmienna_x2;
+    vekt_srednia_TEMP, vekt_10_temp, vekt_10_imped, vekt_usred_temp,zmienna_x2, vekt_impedFormat;
 
     const int PIEC_MINUT = 360000;
     const int MAX_RAMEK = 310;
-    double poczatek_Osi_X;
-    int bufor_temp20;
+    int bufor_10r;
 
 };
 

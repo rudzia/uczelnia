@@ -18,19 +18,19 @@ MainWindow::MainWindow(QWidget *parent) :
     stoper_start = true;
     koniec_wyswietlania = false;
     ilosc_ramek=0;
-    poczatek_Osi_X = 0.0;
-    bufor_temp20 = 0;
+    bufor_10r = 0;
 
     ui->widget_imped->addGraph();
     ui->widget_ekg->addGraph();
-
+    ui->widget_impedFormat->addGraph();
     ui->widget_imped->xAxis->setLabel("Ilosc ramek");
     ui->widget_imped->yAxis->setLabel("Impedancja");
     ui->widget_ekg->xAxis->setLabel("Ilosc ramek");
     ui->widget_ekg->yAxis->setLabel("EKG");
     ui->widget_tem->xAxis->setLabel("Ilosc ramek");
     ui->widget_tem->yAxis->setLabel("Temperatura");
-
+    ui->widget_impedFormat->xAxis->setLabel("Ilosc ramek");
+    ui->widget_impedFormat->yAxis->setLabel("Impedancja Format.");
 }
 
 MainWindow::~MainWindow()
@@ -59,7 +59,7 @@ void MainWindow::ZapisDoPliku(QByteArray zbior_ramek)
     plik_txt.close();
 }
 
-double MainWindow::Srednia_temp(QVector<double> vekt)
+double MainWindow::Srednia_sygnalu(QVector<double> vekt)
 {
     double sum = 0;
     for(int i = 0; i < vekt.size(); i++)
@@ -70,6 +70,19 @@ double MainWindow::Srednia_temp(QVector<double> vekt)
 
     return srednia_tem;
 }
+QVector<double> MainWindow::UsunStalaSkladowa(QVector<double> vektImped)
+{
+    double srednia_imped = Srednia_sygnalu(vektImped);
+    for(int i = 0; i < vektImped.size(); i++)
+    {
+        vektImped[i] -= srednia_imped;
+    }
+    return vektImped;
+}
+
+
+//GLOWNY PROGRAM
+
 void MainWindow::ReadAndProcessData()
 {
 //TU WPISUJEMY POLECENIE ODBIERANIA DANYCH
@@ -78,11 +91,11 @@ void MainWindow::ReadAndProcessData()
         Stoper.start();
         stoper_start = false;
 
-       for (int j = 10; j < 310; j++)
+       for (int j = 0; j < 300; j++)
         {
             zmienna_x.push_back((double)j);
         }
-       for (int j = 0; j < 300; j++)
+       for (int j = -5; j < 295; j++)
         {
             zmienna_x2.push_back((double)j);
         }
@@ -116,7 +129,7 @@ void MainWindow::ReadAndProcessData()
         {
             int mili_sekundy = Stoper.elapsed();
             ilosc_ramek++;
-            bufor_temp20++;
+            bufor_10r++;
 
             ramka_danych.append(Buffer.data());
             zbior_ramek.append(Ramka(ramka_danych) + '\n');
@@ -132,6 +145,7 @@ void MainWindow::ReadAndProcessData()
             ui->widget_imped->replot();
             ui->widget_ekg->replot();
             ui->widget_tem->replot();
+            ui->widget_impedFormat->replot();
 
             ui->widget_imped->graph(0)->setData(zmienna_x,vektor_imped);
             ui->widget_imped->graph(0)->rescaleAxes();
@@ -143,20 +157,20 @@ void MainWindow::ReadAndProcessData()
             ui->widget_tem->addGraph();
             ui->widget_tem->graph(1)->setPen(QPen(Qt::red)); // czerwony dla usrednionej temperatury
 
-//tworzenie wektora uśrednionej temperatury
-            vekt_20_temp.push_back(ramka.mid(17,2).toDouble());
-            vekt_usred_temp.push_back(Srednia_temp(vekt_20_temp));
+//tworzenie wektora uśrednionej temperatury z przesunieciem 10 ramek
+            vekt_10_temp.push_back(ramka.mid(17,2).toDouble());
+            vekt_usred_temp.push_back(Srednia_sygnalu(vekt_10_temp));
 
-            if(ilosc_ramek >= 20)
+            if(ilosc_ramek >= 10)
             {
-                vekt_20_temp.removeFirst();
+                vekt_10_temp.removeFirst();
             }
 
             ui->widget_tem->graph(0)->setData(zmienna_x, vektor_temp);
-
             ui->widget_tem->graph(1)->setData(zmienna_x2, vekt_usred_temp);
             ui->widget_tem->graph(0)->rescaleAxes();
-            ui->widget_tem->graph(1)->rescaleAxes();
+            ui->widget_tem->graph(1)->rescaleAxes(true);
+
 
             if (ilosc_ramek >= MAX_RAMEK)
             {
@@ -166,9 +180,22 @@ void MainWindow::ReadAndProcessData()
                zmienna_x.removeFirst();
                zmienna_x2.removeFirst();
                vekt_usred_temp.removeFirst();
-               zmienna_x.push_back(ilosc_ramek+10.0);
-               zmienna_x2.push_back(ilosc_ramek);
-               poczatek_Osi_X++; 
+               zmienna_x.push_back(ilosc_ramek);
+               zmienna_x2.push_back(ilosc_ramek-5.0);
+               vekt_impedFormat.removeFirst();
+            }
+
+            //tworzenie wektora impedancji bez stalej skladowej
+            vekt_10_imped.push_back(ramka.mid(0,8).toDouble());
+
+            if(bufor_10r == 10)
+            {
+                vekt_impedFormat.append(UsunStalaSkladowa(vekt_10_imped));
+                ui->widget_impedFormat->graph(0)->setData(zmienna_x,vekt_impedFormat); //dziala z opoxnieniem o 10
+                ui->widget_impedFormat->graph(0)->rescaleAxes();
+
+                bufor_10r=0;
+                vekt_10_imped.clear();
             }
 
 //ZAPIS PLIKU DO TXT
