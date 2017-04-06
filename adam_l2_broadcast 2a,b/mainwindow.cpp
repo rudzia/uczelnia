@@ -17,8 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
     pozwolenie_zapisu = true;
     stoper_start = true;
     koniec_wyswietlania = false;
-    ilosc_ramek=0;
-    bufor_10r = 0;
+    ilosc_ramek = 0.0;
 
     ui->widget_imped->addGraph();
     ui->widget_ekg->addGraph();
@@ -67,17 +66,13 @@ double MainWindow::Srednia_sygnalu(QVector<double> vekt)
         sum += vekt[i];
     }
     double srednia_tem = sum/vekt.size();
-
     return srednia_tem;
 }
-QVector<double> MainWindow::UsunStalaSkladowa(QVector<double> vektImped)
+double MainWindow::UsunStalaSkladowa(QVector<double> vektImped)
 {
     double srednia_imped = Srednia_sygnalu(vektImped);
-    for(int i = 0; i < vektImped.size(); i++)
-    {
-        vektImped[i] -= srednia_imped;
-    }
-    return vektImped;
+    vektImped[0] -= srednia_imped;
+    return vektImped[0];
 }
 
 
@@ -90,15 +85,6 @@ void MainWindow::ReadAndProcessData()
     {
         Stoper.start();
         stoper_start = false;
-
-       for (int j = 0; j < 300; j++)
-        {
-            zmienna_x.push_back((double)j);
-        }
-       for (int j = -5; j < 295; j++)
-        {
-            zmienna_x2.push_back((double)j);
-        }
     }
 
     QByteArray Buffer;
@@ -112,24 +98,20 @@ void MainWindow::ReadAndProcessData()
 
 //TU WPISUJEMY POLECENIA PRZETWARZANIA DANYCH
 
-    //IMP
     if((Buffer.at(0) == '<') && ramka_danych.isNull())
     {
         ramka_danych.append(Buffer.data());
     }
-    //EKG
     if((Buffer.at(0) == ',') && !(Buffer.contains('>')) && !ramka_danych.isNull() && !(ramka_danych.contains(',')))
     {
         ramka_danych.append(Buffer.data());
     }
-    //TEMP
     if(Buffer.contains('>') && (Buffer.at(0) == ',') && ramka_danych.contains('<') && ramka_danych.contains(',') && !ramka_danych.isNull())
     {
         if(koniec_wyswietlania==false)
         {
-            int mili_sekundy = Stoper.elapsed();
             ilosc_ramek++;
-            bufor_10r++;
+            int mili_sekundy = Stoper.elapsed();
 
             ramka_danych.append(Buffer.data());
             zbior_ramek.append(Ramka(ramka_danych) + '\n');
@@ -137,65 +119,77 @@ void MainWindow::ReadAndProcessData()
 
 //RYSOWANIE WYKRESU
 
-            QString ramka = (Ramka(ramka_danych));
-            vektor_imped.push_back(ramka.mid(0,8).toDouble());
-            vektor_ekg.push_back(ramka.mid(9,7).toDouble());
-            vektor_temp.push_back(ramka.mid(17,2).toDouble());
-
             ui->widget_imped->replot();
             ui->widget_ekg->replot();
             ui->widget_tem->replot();
             ui->widget_impedFormat->replot();
-
-            ui->widget_imped->graph(0)->setData(zmienna_x,vektor_imped);
-            ui->widget_imped->graph(0)->rescaleAxes();
-            ui->widget_ekg->graph(0)->setData(zmienna_x,vektor_ekg);
+//wykres EKG
+            QString ramka = (Ramka(ramka_danych));
+            zmienna_xE.push_back(ilosc_ramek);
+            vektor_ekg.push_back(ramka.mid(9,7).toDouble());
+            ui->widget_ekg->graph(0)->setData(zmienna_xE,vektor_ekg);
             ui->widget_ekg->graph(0)->rescaleAxes();
+
+            if (ilosc_ramek >= MAX_RAMEK)
+            {
+               vektor_ekg.removeFirst();
+               zmienna_xE.removeFirst();
+            }
+
+//tworzenie wektora uśrednionej temperatury z przesunieciem 50 ramek
 
             ui->widget_tem->addGraph();
             ui->widget_tem->graph(0)->setPen(QPen(Qt::blue)); // niebieski dla temperatury
             ui->widget_tem->addGraph();
             ui->widget_tem->graph(1)->setPen(QPen(Qt::red)); // czerwony dla usrednionej temperatury
 
-//tworzenie wektora uśrednionej temperatury z przesunieciem 10 ramek
-            vekt_10_temp.push_back(ramka.mid(17,2).toDouble());
-            vekt_usred_temp.push_back(Srednia_sygnalu(vekt_10_temp));
+            vekt_50_temp.push_back(ramka.mid(17,2).toDouble());
+            vektor_temp.push_back(ramka.mid(17,2).toDouble());
+            zmienna_xT.push_back(ilosc_ramek);
+            vekt_usred_temp.push_back(Srednia_sygnalu(vekt_50_temp));
 
-            if(ilosc_ramek >= 10)
+            if(ilosc_ramek == 50)
             {
-                vekt_10_temp.removeFirst();
+                vektor_temp.remove(0,25);
+                zmienna_xT.remove(0,25);
+                vekt_usred_temp.remove(0,25);
+            }
+            if(ilosc_ramek >= 50)
+            {
+               // ui->widget_tem->graph(0)->setData(zmienna_xT, vektor_temp);
+                ui->widget_tem->graph(1)->setData(zmienna_xT, vekt_usred_temp);
+                //ui->widget_tem->graph(0)->rescaleAxes();
+                ui->widget_tem->graph(1)->rescaleAxes();
+
+                vekt_50_temp.removeFirst();
+                zmienna_xT.removeFirst();
+                vektor_temp.removeFirst();
+                vekt_usred_temp.removeFirst();
             }
 
-            ui->widget_tem->graph(0)->setData(zmienna_x, vektor_temp);
-            ui->widget_tem->graph(1)->setData(zmienna_x2, vekt_usred_temp);
-            ui->widget_tem->graph(0)->rescaleAxes();
-            ui->widget_tem->graph(1)->rescaleAxes(true);
+ //tworzenie wektora impedancji bez stalej skladowej
 
+            vekt_300_imped.push_back(ramka.mid(0,8).toDouble());
 
-            if (ilosc_ramek >= MAX_RAMEK)
+            if(ilosc_ramek >= 200)
             {
-               vektor_imped.removeFirst();
-               vektor_ekg.removeFirst();
-               vektor_temp.removeFirst();
-               zmienna_x.removeFirst();
-               zmienna_x2.removeFirst();
-               vekt_usred_temp.removeFirst();
-               zmienna_x.push_back(ilosc_ramek);
-               zmienna_x2.push_back(ilosc_ramek-5.0);
-               vekt_impedFormat.removeFirst();
-            }
-
-            //tworzenie wektora impedancji bez stalej skladowej
-            vekt_10_imped.push_back(ramka.mid(0,8).toDouble());
-
-            if(bufor_10r == 10)
-            {
-                vekt_impedFormat.append(UsunStalaSkladowa(vekt_10_imped));
-                ui->widget_impedFormat->graph(0)->setData(zmienna_x,vekt_impedFormat); //dziala z opoxnieniem o 10
+                zmienna_xI.push_back(ilosc_ramek-100.0);
+                vektor_imped.push_back(vekt_300_imped[100]);
+                vekt_impedFormat.append(UsunStalaSkladowa(vekt_300_imped));
+                ui->widget_impedFormat->graph(0)->setData(zmienna_xI,vekt_impedFormat); //dziala z opoxnieniem o 300
                 ui->widget_impedFormat->graph(0)->rescaleAxes();
 
-                bufor_10r=0;
-                vekt_10_imped.clear();
+                ui->widget_imped->graph(0)->setData(zmienna_xI,vektor_imped);
+                ui->widget_imped->graph(0)->rescaleAxes();
+
+                vekt_300_imped.removeFirst();
+
+                if(ilosc_ramek >= 300)
+                {
+                    zmienna_xI.removeFirst();
+                    vekt_impedFormat.removeFirst();
+                    vektor_imped.removeFirst();
+                }
             }
 
 //ZAPIS PLIKU DO TXT
