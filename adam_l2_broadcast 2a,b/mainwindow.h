@@ -24,8 +24,6 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    QByteArray Ramka(QByteArray ramka_danych);
-    void ZapisDoPliku(QByteArray zbior_ramek);
     double Srednia_sygnalu(QVector<double> vekt);
     double UsunStalaSkladowa(QVector<double> vektImped);
 
@@ -39,6 +37,9 @@ private:
     bool koniec_wyswietlania;
     QTime Stoper;
     double ilosc_ramek;
+    int zapisujDoPliku;
+    double sumaImped;
+    double sumaTemp;
 
     QVector<double> vektor_imped,vektor_ekg,vektor_temp, zmienna_xE, zmienna_xT, zmienna_xI,
     vekt_50_temp, vekt_300_imped, vekt_usred_temp, vekt_impedFormat;
