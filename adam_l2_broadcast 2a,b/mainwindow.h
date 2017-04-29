@@ -42,7 +42,7 @@ private:
     double sumaTemp;
 
     QVector<double> vektor_imped,vektor_ekg,vektor_temp, zmienna_xE, zmienna_xT, zmienna_xI,
-    vekt_50_temp, vekt_300_imped, vekt_usred_temp, vekt_impedFormat;
+    vekt_50_temp, vekt_200_imped, vekt_usred_temp, vekt_impedFormat;
 
     const int PIEC_MINUT = 360000;
     const int MAX_RAMEK = 100;

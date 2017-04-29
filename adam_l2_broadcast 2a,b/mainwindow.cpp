@@ -125,7 +125,7 @@ void MainWindow::ReadAndProcessData()
                zmienna_xE.removeFirst();
             }
 
-//tworzenie wektora uśrednionej temperatury z przesunieciem 50 ramek
+//tworzenie wykresu uśrednionej temperatury
 
             ui->widget_tem->addGraph();
             ui->widget_tem->graph(0)->setPen(QPen(Qt::blue)); // niebieski dla temperatury
@@ -134,57 +134,46 @@ void MainWindow::ReadAndProcessData()
 
             vekt_50_temp.push_back(ramka.mid(17,2).toDouble());
             sumaTemp += ramka.mid(17,2).toDouble();
-           // vektor_temp.push_back(ramka.mid(17,2).toDouble());
-            //zmienna_xT.push_back(ilosc_ramek);
-            //vekt_usred_temp.push_back(Srednia_sygnalu(vekt_50_temp));
 
-           /* if(ilosc_ramek == 50)
-            {
-                //vektor_temp.remove(0,25);
-                //zmienna_xT.remove(0,25);
-                vekt_usred_temp.remove(0,25);
-            }
-            */
             if(ilosc_ramek >= 50)
             {
                 vekt_usred_temp.push_back(sumaTemp/50);
                 sumaTemp -= vekt_50_temp[0];
-               // vekt_usred_temp.push_back(Srednia_sygnalu(vekt_50_temp));
                 zmienna_xT.push_back(ilosc_ramek-50.0);
                 vektor_temp.push_back(vekt_50_temp[0]);
-                //ui->widget_tem->graph(0)->setData(zmienna_xT, vektor_temp);
+                ui->widget_tem->graph(0)->setData(zmienna_xT, vektor_temp);
                 ui->widget_tem->graph(1)->setData(zmienna_xT, vekt_usred_temp);
-                //ui->widget_tem->graph(0)->rescaleAxes();
-                ui->widget_tem->graph(1)->rescaleAxes(); //jak chce wyswitlic dwa na raz to dopisac (true)
+                ui->widget_tem->graph(0)->rescaleAxes();
+                ui->widget_tem->graph(1)->rescaleAxes(true); //jak chce wyswitlic dwa na raz to dopisac (true)
+                vekt_50_temp.removeFirst();
 
                 if(ilosc_ramek >= 100)
-                {
-                    vekt_50_temp.removeFirst();
+                {                   
                     zmienna_xT.removeFirst();
                     vektor_temp.removeFirst();
                     vekt_usred_temp.removeFirst();
                 }
             }
 
- //tworzenie wektora impedancji bez stalej skladowej
+           //tworzenie wykresu impedancji bez stalej skladowej
 
-            vekt_300_imped.push_back(ramka.mid(0,8).toDouble());
+            vekt_200_imped.push_back(ramka.mid(0,8).toDouble());
             sumaImped += ramka.mid(0,8).toDouble();
 
 
             if(ilosc_ramek >= 200)
             {
-                vekt_impedFormat.push_back(vekt_300_imped[0] - sumaImped/200);
+                vekt_impedFormat.push_back(vekt_200_imped[0] - sumaImped/200);
                 zmienna_xI.push_back(ilosc_ramek-200.0);
-                vektor_imped.push_back(vekt_300_imped[0]);
-                //vekt_impedFormat.append(UsunStalaSkladowa(vekt_300_imped));
+                vektor_imped.push_back(vekt_200_imped[0]);
+                //vekt_impedFormat.append(UsunStalaSkladowa(vekt_200_imped));
                 ui->widget_impedFormat->graph(0)->setData(zmienna_xI,vekt_impedFormat); //dziala z opoxnieniem o 300
                 ui->widget_impedFormat->graph(0)->rescaleAxes();
 
                 ui->widget_imped->graph(0)->setData(zmienna_xI,vektor_imped);
                 ui->widget_imped->graph(0)->rescaleAxes();
-                sumaImped -= vekt_300_imped[0];
-                vekt_300_imped.removeFirst();
+                sumaImped -= vekt_200_imped[0];
+                vekt_200_imped.removeFirst();
 
                 if(ilosc_ramek >= 250)
                 {
