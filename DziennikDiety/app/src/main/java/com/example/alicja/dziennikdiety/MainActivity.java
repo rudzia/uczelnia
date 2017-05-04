@@ -25,8 +25,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.button_limit:
-                //intent = new Intent(MainActivity.this, LimitActivity.class);
-                //startActivity(intent);
+                intent = new Intent(MainActivity.this, LimitActivity.class);
+                startActivity(intent);
                 break;
             case R.id.button_bazaProd:
                 break;

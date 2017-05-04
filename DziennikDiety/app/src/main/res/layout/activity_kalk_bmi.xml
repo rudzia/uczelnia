@@ -84,21 +84,34 @@
             android:layout_height="wrap_content"
             android:text="@string/ButtonOblicz" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="360dp"
+        android:layout_height="76dp"
+        android:orientation="horizontal"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="344dp">
+
         <TextView
-            android:id="@+id/textViewWynikBMI"
-            android:layout_width="match_parent"
+            android:id="@+id/textView"
+            android:layout_width="141dp"
             android:layout_height="wrap_content"
             android:text="@string/Wynik"
-            android:textAlignment="viewStart"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat"
             android:textSize="24sp" />
 
         <EditText
-            android:id="@+id/editText14"
+            android:id="@+id/editText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:ems="10"
-            android:inputType="textMultiLine" />
-
+            android:inputType="number" />
     </LinearLayout>
 
 
