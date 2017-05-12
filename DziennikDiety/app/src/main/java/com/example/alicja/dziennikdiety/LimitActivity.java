@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -16,14 +17,19 @@ public class LimitActivity extends AppCompatActivity {
     private EditText wiekTextEdit;
     private EditText wagaTextEdit;
     private EditText wzrostTextEdit;
-    private EditText wynikTextEdit;
+    private EditText PPMTextEdit;
+    private TextView WynikPPM;
+    private TextView WynikCPM;
     private Integer wiek;
     private Integer wzrost;
     private Integer waga;
     private Integer K_czy_M;
+    private Integer aktywnosc;
     private double PPM;
+    private double CPM;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_limit);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -31,39 +37,35 @@ public class LimitActivity extends AppCompatActivity {
         wiekTextEdit = (EditText)findViewById(R.id.editTextWiek);
         wagaTextEdit = (EditText)findViewById(R.id.editTextWaga);
         wzrostTextEdit = (EditText)findViewById(R.id.editTextWzrost);
-        wynikTextEdit = (EditText)findViewById(R.id.editTextWynik);
+        WynikPPM = (TextView)findViewById(R.id.textViewWynikPPM);
+        WynikCPM = (TextView)findViewById(R.id.textViewWynikCPP);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    public void onRadioButtonClick(View view)
+    public void onRadioButtonClickPlec(View view)
     {
-        //rzutujemy widok kontrolki, której stan został zmieniony na RadioButton,
-        // sprawdzamy czy jest wybrana i zapisujemy jej stan do zmiennej zaznaczona
-
-        boolean zaznaczony =((RadioButton)view).isChecked();
-
-        //sprawdzamy zmiana której kontrolki wywołała funkcję, poprzez sprawdzenie id widoku tej kontrolki
         switch(view.getId())
         {
-            case R.id.radioButtonKobieta: //gdy chodzi o pierwszy RadioButton
-//to mi zbedne, tutaj kod do obliczania
-                //wyswietlamy, którką informację Toast kontrolce, której stan został zmieniony
-                Toast.makeText(LimitActivity.this, "Stan RadioButton'a 1 został zmieniony na" + String.valueOf(zaznaczony),
-                        Toast.LENGTH_SHORT).show();
-                K_czy_M = 1;
-
+            case R.id.radioButtonKobieta: K_czy_M = 1;
                 break;
-            case R.id.radioButtonMezyczna: //gdy chodzi o drugi RadioButton
-
-                Toast.makeText(LimitActivity.this, "Stan RadioButton'a 1 został zmieniony na" + String.valueOf(zaznaczony),
-                        Toast.LENGTH_SHORT).show();
-                K_czy_M = 2;
+            case R.id.radioButtonMezyczna: K_czy_M = 2;
                 break;
-
         }
-
     }
+    public void onRadioButtonClickSport(View view)
+    {
+        switch(view.getId())
+        {
+            case R.id.radioButtonMala: aktywnosc = 0;
+                break;
+            case R.id.radioButtonUmiar: aktywnosc = 1;
+                break;
+            case R.id.radioButtonWysoka: aktywnosc = 2;
+                break;
+        }
+    }
+
     public void ObliczBMI(View view)
     {
         wiek = Integer.parseInt(wiekTextEdit.getText().toString());
@@ -74,13 +76,29 @@ public class LimitActivity extends AppCompatActivity {
         {
             PPM = 665.09 + (9.56*waga)+(1.85*wzrost)-(4.67*wiek);
         }
-        else
+        else if(K_czy_M == 2)
         {
             PPM = 66.47 + (13.75*waga)+(5*wzrost)-(6.75*wiek);
         }
 
-        String tekst = String.valueOf(PPM);
-        wynikTextEdit.setText(tekst);
+        int wynikPPM = ((int) (PPM+0.5));
+        String tekstPPM = String.valueOf(wynikPPM) + " kcal";
+        WynikPPM.setText(tekstPPM);
 
+        if(aktywnosc == 0)
+        {
+            CPM = PPM*1.5;
+        }
+        else if(aktywnosc == 1)
+        {
+            CPM = PPM*1.8;
+        }
+        else if(aktywnosc == 2)
+        {
+            CPM = PPM*2.2;
+        }
+        int wynikCPM = ((int) (CPM + 0.5));
+        String tekstCPM = String.valueOf(wynikCPM) + " kcal";
+        WynikCPM.setText(tekstCPM);
     }
 }

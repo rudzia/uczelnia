@@ -8,17 +8,19 @@
     <string name="limit_kaloriiButton">Limit Kalorii</string>
     <string name="title_activity_kalk_kalorii">Kalkulator kalorii posiłku</string>
     <string name="title_activity_kalk_bmi">Kalkulator BMI</string>
-    <string name="Waga">Podaj wagę [kg]</string>
-    <string name="Wzrost">Podaj wzrost [cm]</string>
+    <string name="Waga">Podaj wagę [kg]:</string>
+    <string name="Wzrost">Podaj wzrost [cm]:</string>
     <string name="Kobieta">Kobieta</string>
     <string name="Mezczyzna">Mężczyzna</string>
     <string name="ButtonOblicz">Oblicz</string>
     <string name="Wynik">Wynik</string>
-    <string name="Wiek">Podaj wiek</string>
+    <string name="Wiek">Podaj wiek:</string>
     <string name="Aktywnosc">Wybierz aktywność fizyczną:</string>
     <string name="AktywnoscMala">Mała</string>
     <string name="AktywnoscUmiark">Umiarkowana</string>
     <string name="AktywnoscWysok">Wysoka</string>
+    <string name="PPM">Podstawowa przemiana materii:</string>
+    <string name="CPM">Całkowita przemiana materii:</string>
 
     <string name="title_activity_login">Sign in</string>
 
