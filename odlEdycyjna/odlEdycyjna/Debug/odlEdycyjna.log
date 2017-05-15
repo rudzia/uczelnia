@@ -1,5 +1,4 @@
-﻿  stdafx.cpp
-  odlEdycyjna.cpp
-  Generating Code...
+﻿  odlEdycyjna.cpp
+d:\uczelnia\odledycyjna\odledycyjna\odledycyjna.cpp(207): warning C4101: 'isSameLetter': unreferenced local variable
   odlEdycyjna.vcxproj -> D:\uczelnia\odlEdycyjna\Debug\odlEdycyjna.exe
   odlEdycyjna.vcxproj -> D:\uczelnia\odlEdycyjna\Debug\odlEdycyjna.pdb (Full PDB)
