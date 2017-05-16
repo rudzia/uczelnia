@@ -18,77 +18,25 @@
         app:popupTheme="@style/AppTheme.PopupOverlay"
         tools:layout_constraintTop_creator="1" />
 
-    <LinearLayout
-        android:layout_width="356dp"
-        android:layout_height="39dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="355dp"
-        android:orientation="horizontal"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="141dp"
-            android:layout_height="match_parent"
-            android:text="@string/Wynik"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat"
-            android:textSize="24sp" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="TextView" />
-
-    </LinearLayout>
-
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/ButtonOblicz"
         android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginRight="8dp"
+        android:layout_marginTop="195dp"
+        android:onClick="oblicz"
+        android:text="@string/ButtonOblicz"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/toolbar"
-        android:layout_marginTop="293dp" />
-
-    <RadioGroup
-        android:layout_width="282dp"
-        android:layout_height="76dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="204dp"
-        app:layout_constraintHorizontal_bias="0.197"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/toolbar">
-
-        <RadioButton
-            android:id="@+id/radioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/Kobieta" />
-
-        <RadioButton
-            android:id="@+id/radioButton2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/Mezczyzna" />
-    </RadioGroup>
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="355dp"
-        android:layout_height="119dp"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
@@ -110,7 +58,7 @@
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/editText8"
+            android:id="@+id/et_waga"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -127,13 +75,65 @@
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/editText9"
+            android:id="@+id/et_wzrost"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="number" />
+            android:inputType="number"
+            android:textAlignment="center" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_wynik"
+        android:layout_width="155dp"
+        android:layout_height="48dp"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintTop_toBottomOf="@+id/button2"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/Wynik"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="24sp"
+        app:layout_constraintRight_toLeftOf="@+id/tv_wynik"
+        app:layout_constraintTop_toBottomOf="@+id/button2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_wynik"
+        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tv_opis"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="36sp"
+        android:textAlignment="center"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:id="@+id/tv_prawidlowe"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text=""
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_opis"
+        android:layout_marginTop="16dp"
+        app:layout_constraintHorizontal_bias="0.0" />
 
 
 </android.support.constraint.ConstraintLayout>

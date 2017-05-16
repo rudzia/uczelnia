@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
             case R.id.button_bazaProd:
                 break;
             case R.id.button_dzien_diety:
+                intent = new Intent(MainActivity.this, Kalendarz.class);
+                startActivity(intent);
                 break;
             case R.id.button_logInOut:
                 intent = new Intent(MainActivity.this, logowanie.class);

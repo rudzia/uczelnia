@@ -1,1 +1,1 @@
-include ':app', ':kalk_kalorii'
+include ':app'

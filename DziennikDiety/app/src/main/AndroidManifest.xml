@@ -58,6 +58,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.alicja.dziennikdiety.MainActivity" />
         </activity>
+        <activity android:name=".Kalendarz" />
+        <activity android:name=".DzienneMenu"></activity>
     </application>
 
 </manifest>

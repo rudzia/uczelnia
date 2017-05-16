@@ -13,7 +13,7 @@
     <string name="Kobieta">Kobieta</string>
     <string name="Mezczyzna">Mężczyzna</string>
     <string name="ButtonOblicz">Oblicz</string>
-    <string name="Wynik">Wynik</string>
+    <string name="Wynik">BMI</string>
     <string name="Wiek">Podaj wiek:</string>
     <string name="Aktywnosc">Wybierz aktywność fizyczną:</string>
     <string name="AktywnoscMala">Mała</string>
@@ -27,7 +27,6 @@
     <string name="Bezglutenowa">bezglutenowa</string>
     <string name="Brak_alergii">brak/żadna z powyższych</string>
     <string name="Twoja_alergia">Zaznacz rodzaj diety pod względem alergii pokarmowych</string>
-
 
 
     <string name="title_activity_login">Sign in</string>
