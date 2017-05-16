@@ -4,7 +4,7 @@
     <string name="kalk_bmiButton">Kalkulator BMI</string>
     <string name="baza_prodButton">Baza produktów</string>
     <string name="wylogujButton">Wyloguj</string>
-    <string name="dzien_dietyButton">Moja dieta</string>
+    <string name="dzien_dietyButton">Dziennik posiłków</string>
     <string name="limit_kaloriiButton">Limit Kalorii</string>
     <string name="title_activity_kalk_kalorii">Kalkulator kalorii posiłku</string>
     <string name="title_activity_kalk_bmi">Kalkulator BMI</string>
@@ -22,13 +22,20 @@
     <string name="PPM">Podstawowa przemiana materii:</string>
     <string name="CPM">Całkowita przemiana materii:</string>
 
+    <string name="Twoja_dieta">Alergie pokarmowe</string>
+    <string name="Bezlaktozowa">bezlaktozowa</string>
+    <string name="Bezglutenowa">bezglutenowa</string>
+    <string name="Brak_alergii">brak/żadna z powyższych</string>
+    <string name="Twoja_alergia">Zaznacz rodzaj diety pod względem alergii pokarmowych</string>
+
+
+
     <string name="title_activity_login">Sign in</string>
 
     <!-- Strings related to login -->
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Hasło</string>
+    <string name="podaj_login">Podaj login</string>
+    <string name="podaj_haslo">Podaj hasło</string>
     <string name="action_sign_in">Zaloguj się lub zarejestruj</string>
-    <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
@@ -37,6 +44,8 @@
         completions."
     </string>
     <string name="title_activity_limit">Limit kalorii</string>
+    <string name="title_activity_logowanie">Panel logowania</string>
+    <string name="title_activity_dieta_alergie">Alergie pokarmowe</string>
 
 
 </resources>

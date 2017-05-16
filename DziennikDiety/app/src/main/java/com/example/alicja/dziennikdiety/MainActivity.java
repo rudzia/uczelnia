@@ -32,7 +32,13 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.button_dzien_diety:
                 break;
-            case R.id.button_wyloguj:
+            case R.id.button_logInOut:
+                intent = new Intent(MainActivity.this, logowanie.class);
+                startActivity(intent);
+                break;
+            case R.id.button_DietaAlergie:
+                intent = new Intent(MainActivity.this, DietaAlergie.class);
+                startActivity(intent);
                 break;
         }
     }

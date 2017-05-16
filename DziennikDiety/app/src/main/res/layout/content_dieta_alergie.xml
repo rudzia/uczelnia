@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.alicja.dziennikdiety.DietaAlergie"
+    tools:showIn="@layout/activity_dieta_alergie">
+
+    <TextView
+        android:id="@+id/textViewRodzajAlergii"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/Twoja_alergia"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/radioGroup3"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintLeft_creator="1" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/radioGroup3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="167dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:checkedButton="@+id/radioButtonBrakAlergii"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.523"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textViewRodzajAlergii"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintLeft_creator="1">
+
+        <RadioButton
+            android:id="@+id/radioButtonLaktoza"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="40dp"
+            android:onClick="onRadioButtonClickAlergia"
+            android:text="@string/Bezlaktozowa"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="parent"
+            tools:layout_constraintLeft_creator="1"
+            tools:layout_constraintTop_creator="1" />
+
+        <RadioButton
+            android:id="@+id/radioButtonGluten"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClickAlergia"
+            android:text="@string/Bezglutenowa"
+            app:layout_constraintLeft_toLeftOf="@+id/radioButtonLaktoza"
+            app:layout_constraintTop_toBottomOf="@+id/radioButtonLaktoza"
+            tools:layout_constraintLeft_creator="1"
+            tools:layout_constraintTop_creator="1" />
+
+        <RadioButton
+            android:id="@+id/radioButtonBrakAlergii"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClickAlergia"
+            android:text="@string/Brak_alergii"
+            app:layout_constraintLeft_toLeftOf="@+id/radioButtonGluten"
+            app:layout_constraintTop_toBottomOf="@+id/radioButtonGluten"
+            tools:layout_constraintLeft_creator="1"
+            tools:layout_constraintTop_creator="1" />
+    </android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout>
