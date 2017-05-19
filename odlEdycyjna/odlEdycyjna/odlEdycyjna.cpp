@@ -8,10 +8,11 @@
 #include <fstream>
 using namespace std;
 
-int similarityMetric[5][5]= { { 1, -1, -1, -1, -1 },
-							  { -1, 1, -1, -1, -1 },
-							  { -1, -1, 1, -1, -1 },
-							  { -1, -1, -1, 1, -1 },
+							//  A, C, T, G, -
+int similarityMetric[5][5]= { { 2, 0, 0, 0, -1 },     
+							  { 0, 2, 0, 0, -1 },
+							  { 0, 0, 2, 0, -1 },
+							  { 0, 0, 0, 2, -1 },
 							  { -1, -1, -1, -1, 0 } };
 
 int distanceMetric[5][5] = {{ 0, 1, 1, 1, 1 },
@@ -19,8 +20,6 @@ int distanceMetric[5][5] = {{ 0, 1, 1, 1, 1 },
 							{ 1, 1, 0, 1, 1 },
 							{ 1, 1, 1, 0, 1 },
 							{ 1, 1, 1, 1, 0 } };
-
-//bool controlWord(string word)
 
 struct node
 {
@@ -159,6 +158,7 @@ int max(int ij_1, int i_1j_1, int i_1j, int &selectedCell) // selected cell: 1 -
 void calculateEditDistance(string word1, string word2)
 {
 	int column, rows;
+	int sum_d = 0;
 	int selectedCell = 0;
 	column = word1.length() + 1;
 	rows = word2.length() + 1;
@@ -168,14 +168,19 @@ void calculateEditDistance(string word1, string word2)
 	{
 		distanceArray[i] = new node[column];
 	}
-	for (int n = 0; n < column; n++)
+	distanceArray[0][0].value = 0;
+
+	for (int n = 1; n < column; n++)
 	{
-		distanceArray[0][n].value = n;
+		sum_d += d('-', word1[n - 1]);
+		distanceArray[0][n].value = sum_d;
 		distanceArray[0][n].previousCell = 1;
 	}
-	for (int m = 0; m < rows; m++)
+	sum_d = 0;
+	for (int m = 1; m < rows; m++)
 	{
-		distanceArray[m][0].value = m;
+		sum_d += d(word2[m - 1], '-');
+		distanceArray[m][0].value = sum_d;
 		distanceArray[m][0].previousCell = 3;
 	}
 	for (int i = 1; i < rows; i++)
@@ -203,9 +208,9 @@ void calculateEditDistance(string word1, string word2)
 
 void similarityWords(string word1, string word2)
 {
-	int column, rows;
-	int isSameLetter;
+	int column, rows, isSameLetter;
 	int selectedCell = 0;
+	int sum_s = 0;
 	column = word1.length() + 1;
 	rows = word2.length() + 1;
 
@@ -214,14 +219,19 @@ void similarityWords(string word1, string word2)
 	{
 		sequenceSimilarityArray[i] = new node[column];
 	}
-	for (int n = 0; n < column; n++)
+	sequenceSimilarityArray[0][0].value = 0;
+	
+	for (int n = 1; n < column; n++)
 	{
-		sequenceSimilarityArray[0][n].value = 0;
+		sum_s += s('-', word1[n - 1]);
+		sequenceSimilarityArray[0][n].value = sum_s;
 		sequenceSimilarityArray[0][n].previousCell = 1;
 	}
-	for (int m = 0; m < rows; m++)
+	sum_s = 0;
+	for (int m = 1; m < rows; m++)
 	{
-		sequenceSimilarityArray[m][0].value = 0;
+		sum_s += s(word2[m - 1], '-');
+		sequenceSimilarityArray[m][0].value = sum_s;
 		sequenceSimilarityArray[m][0].previousCell = 3;
 	}
 	for (int i = 1; i < rows; i++)
