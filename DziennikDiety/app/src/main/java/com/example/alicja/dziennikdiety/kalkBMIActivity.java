@@ -38,8 +38,8 @@ public class kalkBMIActivity extends AppCompatActivity {
         }
 
         float waga, wzrost;
-        waga = new Float(s_waga);
-        wzrost = new Float(s_wzrost);
+        waga = Float.valueOf(s_waga);
+        wzrost = Float.valueOf(s_wzrost);
         wzrost /= 100;
 
         float bmi = waga/(wzrost*wzrost)*100;

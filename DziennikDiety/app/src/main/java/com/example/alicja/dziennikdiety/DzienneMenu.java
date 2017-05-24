@@ -3,7 +3,9 @@ package com.example.alicja.dziennikdiety;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -27,4 +29,5 @@ public class DzienneMenu extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE,\n d MMMM y");
         tv.setText(sdf.format(data.getTime()));
     }
+
 }

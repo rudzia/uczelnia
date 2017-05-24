@@ -3,13 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/DziennikDiety.iml" filepath="$PROJECT_DIR$/DziennikDiety.iml" />
-      <module fileurl="file://$PROJECT_DIR$/DziennikDiety.iml" filepath="$PROJECT_DIR$/DziennikDiety.iml" />
-      <module fileurl="file://$PROJECT_DIR$/DziennikDiety.iml" filepath="$PROJECT_DIR$/DziennikDiety.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/kalk_kalorii/kalk_kalorii.iml" filepath="$PROJECT_DIR$/kalk_kalorii/kalk_kalorii.iml" />
-      <module fileurl="file://$PROJECT_DIR$/kalk_kalorii/kalk_kalorii.iml" filepath="$PROJECT_DIR$/kalk_kalorii/kalk_kalorii.iml" />
     </modules>
   </component>
 </project>

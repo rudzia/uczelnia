@@ -8,6 +8,7 @@
     <string name="limit_kaloriiButton">Limit Kalorii</string>
     <string name="title_activity_kalk_kalorii">Kalkulator kalorii posiłku</string>
     <string name="title_activity_kalk_bmi">Kalkulator BMI</string>
+    <string name="title_activity_kalendarz">Kalendarz</string>
     <string name="Waga">Podaj wagę [kg]:</string>
     <string name="Wzrost">Podaj wzrost [cm]:</string>
     <string name="Kobieta">Kobieta</string>
@@ -27,6 +28,8 @@
     <string name="Bezglutenowa">bezglutenowa</string>
     <string name="Brak_alergii">brak/żadna z powyższych</string>
     <string name="Twoja_alergia">Zaznacz rodzaj diety pod względem alergii pokarmowych</string>
+    <string name="click_kalendarz">Kalendarz</string>
+    <string name="click_Zapisz">Zapisz</string>
 
 
     <string name="title_activity_login">Sign in</string>
@@ -45,6 +48,8 @@
     <string name="title_activity_limit">Limit kalorii</string>
     <string name="title_activity_logowanie">Panel logowania</string>
     <string name="title_activity_dieta_alergie">Alergie pokarmowe</string>
+    <string name="title_activity_baza_produktow">Baza produktów</string>
+    <string name="title_activity_kalendarz2">Kalendarz2</string>
 
 
 </resources>

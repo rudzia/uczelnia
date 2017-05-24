@@ -3,8 +3,8 @@ package com.example.alicja.dziennikdiety;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.view.menu.ListMenuItemView;
 import android.view.View;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -12,6 +12,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //new Baza(getApplicationContext()).execute(TYP.POLACZ);
     }
 
     public void click(View view) {
@@ -29,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.button_bazaProd:
+                intent = new Intent(MainActivity.this, BazaProduktowActivity.class);
+                startActivity(intent);
                 break;
             case R.id.button_dzien_diety:
                 intent = new Intent(MainActivity.this, Kalendarz.class);
