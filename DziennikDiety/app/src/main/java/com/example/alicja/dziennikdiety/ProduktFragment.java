@@ -14,8 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.alicja.dziennikdiety.dummy.DummyContent;
-import com.example.alicja.dziennikdiety.dummy.DummyContent.DummyItem;
+import com.example.alicja.dziennikdiety.modele.ProduktContent;
 
 import java.util.List;
 
@@ -25,11 +24,11 @@ import java.util.List;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class ProduktFragment extends Fragment implements LoaderManager.LoaderCallbacks<List<DummyItem>> {
+public class ProduktFragment extends Fragment implements LoaderManager.LoaderCallbacks<List<ProduktContent.Produkt>> {
 
     private OnListFragmentInteractionListener mListener;
     private ProduktViewAdapter mAdapter;
-    private Baza2 loader;
+    private Baza loader;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -51,14 +50,14 @@ public class ProduktFragment extends Fragment implements LoaderManager.LoaderCal
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mAdapter = new ProduktViewAdapter(getActivity(), DummyContent.ITEMS);
+        mAdapter = new ProduktViewAdapter(getActivity(), ProduktContent.ITEMS);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        loader = (Baza2) getLoaderManager().initLoader(0, null, this);
+        loader = (Baza) getLoaderManager().initLoader(0, null, this);
         loader.forceLoad();
     }
 
@@ -99,12 +98,12 @@ public class ProduktFragment extends Fragment implements LoaderManager.LoaderCal
     }
 
     @Override
-    public Loader<List<DummyItem>> onCreateLoader(int id, Bundle args) {
-        return new Baza2(getActivity());
+    public Loader<List<ProduktContent.Produkt>> onCreateLoader(int id, Bundle args) {
+        return new Baza(getActivity());
     }
 
     @Override
-    public void onLoadFinished(Loader<List<DummyItem>> loader, List<DummyItem> data) {
+    public void onLoadFinished(Loader<List<ProduktContent.Produkt>> loader, List<ProduktContent.Produkt> data) {
         if (data == null) {
             Toast.makeText(getContext(), "Brak połączenia z bazą danych", Toast.LENGTH_LONG).show();
             return;
@@ -117,7 +116,7 @@ public class ProduktFragment extends Fragment implements LoaderManager.LoaderCal
     }
 
     @Override
-    public void onLoaderReset(Loader<List<DummyItem>> loader) {
+    public void onLoaderReset(Loader<List<ProduktContent.Produkt>> loader) {
         //mAdapter.setData(null);
     }
 
@@ -150,6 +149,6 @@ public class ProduktFragment extends Fragment implements LoaderManager.LoaderCal
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        void onListFragmentInteraction(ProduktContent.Produkt item);
     }
 }

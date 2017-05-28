@@ -13,14 +13,14 @@ import com.bignerdranch.expandablerecyclerview.Model.ParentListItem;
 import com.bignerdranch.expandablerecyclerview.ViewHolder.ChildViewHolder;
 import com.bignerdranch.expandablerecyclerview.ViewHolder.ParentViewHolder;
 import com.example.alicja.dziennikdiety.ProduktFragment.OnListFragmentInteractionListener;
-import com.example.alicja.dziennikdiety.dummy.DummyContent;
-import com.example.alicja.dziennikdiety.dummy.DummyContent.DummyItem;
+import com.example.alicja.dziennikdiety.modele.ProduktContent;
+import com.example.alicja.dziennikdiety.modele.ProduktContent.Produkt;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
+ * {@link RecyclerView.Adapter} that can display a {@link ProduktContent.Produkt} and makes a call to the
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
@@ -28,11 +28,11 @@ public class ProduktViewAdapter
         //extends ExpandableListView {
         extends ExpandableRecyclerAdapter<ProduktViewAdapter.ProduktViewHolder, ProduktViewAdapter.ProduktInfoViewHolder> {
 
-    private List<DummyItem> mValues;
+    private List<Produkt> mValues;
     private final LayoutInflater inflater;
     private int num_expanded = 0;
 
-    public ProduktViewAdapter(Context ctx, List<DummyItem> items) {
+    public ProduktViewAdapter(Context ctx, List<Produkt> items) {
         super(items);
 
         mValues = new ArrayList<>(items);
@@ -53,14 +53,14 @@ public class ProduktViewAdapter
 
     @Override
     public void onBindParentViewHolder(ProduktViewHolder produktViewHolder, int i, ParentListItem parentListItem) {
-        DummyItem parent = (DummyItem) parentListItem;
+        Produkt parent = (Produkt) parentListItem;
         produktViewHolder.mNazwaView.setText(parent.nazwa);
         //produktViewHolder.mIdView.setText(parent.id.toString());
     }
 
     @Override
     public void onBindChildViewHolder(ProduktInfoViewHolder produktInfoViewHolder, int i, Object o) {
-        DummyContent.DummyItemInfo child = (DummyContent.DummyItemInfo) o;
+        ProduktContent.ProduktInfo child = (ProduktContent.ProduktInfo) o;
         produktInfoViewHolder.kcalView.setText(child.kcal);
         produktInfoViewHolder.weglowodanyView.setText(child.weglowodany);
         produktInfoViewHolder.bialkoView.setText(child.bialko);
@@ -98,7 +98,7 @@ public class ProduktViewAdapter
         return mValues.size()+num_expanded;
     }
 
-    public void setData(List<DummyItem> data) {
+    public void setData(List<Produkt> data) {
         mValues.clear();
         mValues.addAll(data);
         //mValues = data;
@@ -110,7 +110,7 @@ public class ProduktViewAdapter
         public final View mView;
         //public final TextView mIdView;
         public final TextView mNazwaView;
-        public DummyItem mItem;
+        public Produkt mItem;
 
         public ProduktViewHolder(View view) {
             super(view);
