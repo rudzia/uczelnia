@@ -1,10 +1,12 @@
 package com.example.alicja.dziennikdiety;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.alicja.dziennikdiety.modele.Artykul;
@@ -14,7 +16,7 @@ import java.util.ArrayList;
 
 public class DzienneMenuAdapter extends BaseExpandableListAdapter {
     private final LayoutInflater inflater;
-    private Context context;
+    private final Context context;
     private ArrayList<String> groups;
     private ArrayList<ArrayList<Artykul>> children;
 
@@ -27,15 +29,20 @@ public class DzienneMenuAdapter extends BaseExpandableListAdapter {
         this.children = children;
     }
 
-    public void dodaj(String posilek, Artykul artykul) {
-        if (!groups.contains(posilek)) {
-            groups.add(posilek);
+    public void dodaj(Artykul artykul) {
+        if (!groups.contains(artykul.getGroup())) {
+            //groups.add(artykul.getGroup());
+            Log.e("DzienneMenuAdapter", "Próbuje dodać: "+artykul.getGroup());
+            return;
         }
-        int index = groups.indexOf(posilek);
-        if (children.size() < index + 1) {
-            children.add(new ArrayList<Artykul>());
-        }
+        int index = groups.indexOf(artykul.getGroup());
         children.get(index).add(artykul);
+        this.notifyDataSetChanged();
+    }
+
+    public void usun(int grPos, int chPos) {
+        children.get(grPos).remove(chPos);
+        this.notifyDataSetChanged();
     }
 
     @Override
@@ -74,23 +81,44 @@ public class DzienneMenuAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-        String group = (String) getGroup(groupPosition);
+    public View getGroupView(final int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+        final String group = (String) getGroup(groupPosition);
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.fragment_posilek, null);
         }
+
         TextView tv = (TextView) convertView.findViewById(R.id.tv_nazwa_posilku);
+        ImageView iv = (ImageView) convertView.findViewById(R.id.iv_dodawanie);
+
+        iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO: okienko wyboru produktu
+                dodaj(new Artykul(group, new ProduktContent.Produkt(2, "Dodany", "123", "234", "345", "456", false, true)));
+                ((DzienneMenu) context).lista.expandGroup(groupPosition);
+            }
+        });
+
         tv.setText(group);
         return convertView;
     }
 
     @Override
-    public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-        Artykul posilek = (Artykul) getChild(groupPosition, childPosition);
+    public View getChildView(final int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+        final Artykul posilek = (Artykul) getChild(groupPosition, childPosition);
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.fragment_posilek_lista, null);
         }
         TextView tv = (TextView) convertView.findViewById(R.id.tv_artykul_posilku);
+        ImageView iv = (ImageView) convertView.findViewById(R.id.iv_usun);
+
+        iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO: okienko z potwierdzeniem?
+                usun(groupPosition, childPosition);
+            }
+        });
 
         tv.setText(posilek.getName()+"\n"+posilek.getInfo().kcal);
 

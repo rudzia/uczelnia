@@ -17,6 +17,8 @@ import java.util.GregorianCalendar;
 public class DzienneMenu extends AppCompatActivity {
     DzienneMenuAdapter adapter;
     ExpandableListView lista;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,20 +35,32 @@ public class DzienneMenu extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE,\n d MMMM y");
         tv.setText(sdf.format(data.getTime()));
 
-        adapter = new DzienneMenuAdapter(this, new ArrayList<String>(),
-                new ArrayList<ArrayList<Artykul>>());
+        ArrayList<String> nazwyPosilkow = new ArrayList<>();
+        ArrayList<ArrayList<Artykul>> listaArt = new ArrayList<ArrayList<Artykul>>();
+
+        // TODO: przenieść do values/strings.xml
+        nazwyPosilkow.add("Śniadanie");
+        nazwyPosilkow.add("II śniadanie");
+        nazwyPosilkow.add("Obiad");
+        nazwyPosilkow.add("Podwieczorek");
+        nazwyPosilkow.add("Kolacja");
+        for (int i=0; i<5; ++i) {
+            listaArt.add(new ArrayList<Artykul>());
+        }
+
+        adapter = new DzienneMenuAdapter(this, nazwyPosilkow, listaArt);
 
         lista = (ExpandableListView) findViewById(R.id.elv_dzienne_menu_lista);
 
-        lista.setAdapter(adapter);
+        adapter.dodaj(new Artykul("Śniadanie", new ProduktContent.Produkt(1, "Bułka", "500", "400", "300", "200", false, false)));
+        adapter.dodaj(new Artykul("Śniadanie", new ProduktContent.Produkt(1, "Mleko", "500", "400", "300", "200", false, false)));
+        adapter.dodaj(new Artykul("Śniadanie", new ProduktContent.Produkt(1, "coś", "500", "400", "300", "200", false, false)));
+        adapter.dodaj(new Artykul("Śniadanie", new ProduktContent.Produkt(1, "Kawa", "500", "400", "300", "200", false, false)));
+        adapter.dodaj(new Artykul("Obiad", new ProduktContent.Produkt(1, "Bułka", "500", "400", "300", "200", false, false)));
+        adapter.dodaj(new Artykul("Obiad", new ProduktContent.Produkt(1, "Bułka", "500", "400", "300", "200", false, false)));
+        adapter.dodaj(new Artykul("Obiad", new ProduktContent.Produkt(1, "Bułka", "500", "400", "300", "200", false, false)));
 
-        adapter.dodaj("Śniadanie", new Artykul(new ProduktContent.Produkt(1, "Bułka", "500", "400", "300", "200", false, false)));
-        adapter.dodaj("Śniadanie", new Artykul(new ProduktContent.Produkt(1, "Mleko", "500", "400", "300", "200", false, false)));
-        adapter.dodaj("Śniadanie", new Artykul(new ProduktContent.Produkt(1, "coś", "500", "400", "300", "200", false, false)));
-        adapter.dodaj("Śniadanie", new Artykul(new ProduktContent.Produkt(1, "Kawa", "500", "400", "300", "200", false, false)));
-        adapter.dodaj("Obiad", new Artykul(new ProduktContent.Produkt(1, "Bułka", "500", "400", "300", "200", false, false)));
-        adapter.dodaj("Obiad", new Artykul(new ProduktContent.Produkt(1, "Bułka", "500", "400", "300", "200", false, false)));
-        adapter.dodaj("Obiad", new Artykul(new ProduktContent.Produkt(1, "Bułka", "500", "400", "300", "200", false, false)));
+        lista.setAdapter(adapter);
     }
 
 }

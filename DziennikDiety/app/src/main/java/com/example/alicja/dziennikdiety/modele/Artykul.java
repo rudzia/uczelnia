@@ -7,8 +7,9 @@ public class Artykul {
     private String group;
     private ProduktContent.ProduktInfo info;
 
-    public Artykul(ProduktContent.Produkt produkt) {
+    public Artykul(String group, ProduktContent.Produkt produkt) {
         this.name = produkt.nazwa;
+        this.group = group;
         this.info = new ProduktContent.ProduktInfo(produkt.kcal, produkt.weglowodany, produkt.bialko, produkt.tluszcz, produkt.gluten, produkt.laktoza);
     }
 
@@ -24,6 +25,11 @@ public class Artykul {
     }
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return (name+"\n"+info.kcal+" kcal");
     }
 
     public ProduktContent.ProduktInfo getInfo() {
