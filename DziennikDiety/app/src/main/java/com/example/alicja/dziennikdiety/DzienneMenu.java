@@ -38,7 +38,6 @@ public class DzienneMenu extends AppCompatActivity {
         ArrayList<String> nazwyPosilkow = new ArrayList<>();
         ArrayList<ArrayList<Artykul>> listaArt = new ArrayList<ArrayList<Artykul>>();
 
-        // TODO: przenieść do values/strings.xml
         nazwyPosilkow.add("Śniadanie");
         nazwyPosilkow.add("II śniadanie");
         nazwyPosilkow.add("Obiad");
