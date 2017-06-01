@@ -56,7 +56,7 @@ public class kalkBMIActivity extends AppCompatActivity {
         } else if ( bmi < 25){
             ocena = "Idealnie";
         } else if ( bmi < 30){
-            ocena = "Madwaga";
+            ocena = "Nadwaga";
         } else if ( bmi < 35){
             ocena = "I stopień otyłości";
         } else if ( bmi < 40){

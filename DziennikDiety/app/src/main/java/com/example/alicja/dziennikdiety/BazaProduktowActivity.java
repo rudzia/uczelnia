@@ -3,11 +3,10 @@ package com.example.alicja.dziennikdiety;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
-import com.example.alicja.dziennikdiety.dummy.DummyContent;
+import com.example.alicja.dziennikdiety.modele.ProduktContent;
 
 public class BazaProduktowActivity extends AppCompatActivity implements ProduktFragment.OnListFragmentInteractionListener {
 
@@ -27,7 +26,7 @@ public class BazaProduktowActivity extends AppCompatActivity implements ProduktF
     }
 
     @Override
-    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+    public void onListFragmentInteraction(ProduktContent.Produkt item) {
 
     }
 }

@@ -1,48 +1,25 @@
 package com.example.alicja.dziennikdiety;
 
-import android.app.Activity;
-import android.app.Fragment;
 import android.content.Context;
-import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.content.AsyncTaskLoader;
 import android.util.Log;
-import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.alicja.dziennikdiety.modele.ProduktContent;
+
+import java.nio.charset.Charset;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
-enum TYP {
-    POLACZ,
-    POBIERZ_BAZE
-}
+public class Baza extends AsyncTaskLoader<List<ProduktContent.Produkt>>{
+    private Connection conn;
 
-class Baza extends AsyncTask<TYP, Void, Void> {
-
-
-    private static Connection conn = null;
-    private Context ctx;
-    private Integer status= 0;
-
-    @Override
-    protected void onPostExecute(Void aVoid) {
-        super.onPostExecute(aVoid);
-
-        if (conn == null) {
-            Toast.makeText(ctx,
-                    "Błąd połączenia z bazą, niektóre funkcje nie będą działać prawidłowo",
-                    Toast.LENGTH_LONG).show();
-        } else {
-            Toast.makeText(ctx, "Połączono z bazą", Toast.LENGTH_SHORT).show();
-        }
-        rozlacz();
-    }
-
-    Baza(Context ctx) {
-        this.ctx = ctx;
+    public Baza(Context context) {
+        super(context);
         try {
             // The newInstance() call is a work around for some
             // broken Java implementations
@@ -55,20 +32,22 @@ class Baza extends AsyncTask<TYP, Void, Void> {
     }
 
     @Override
-    protected Void doInBackground(TYP... params) {
-        switch (params[0]) {
-            case POLACZ:
-                polacz();
-                break;
-            case POBIERZ_BAZE:
-                polacz();
-                pobierz_dane();
+    public List<ProduktContent.Produkt> loadInBackground() {
+        List<ProduktContent.Produkt> list = null;
+        polacz();
+        if (conn != null) {
+            list = pobierz_dane();
+            rozlacz();
         }
-
-        return null;
+        return list;
     }
 
-    private Void polacz() {
+    @Override
+    protected void onStopLoading() {
+        cancelLoad();
+    }
+
+    private void polacz() {
         try {
             conn = DriverManager.getConnection("jdbc:mysql://188.68.237.63?" +
                     "user=produkty&password=produkty123");
@@ -79,28 +58,30 @@ class Baza extends AsyncTask<TYP, Void, Void> {
             Log.e("mySQL", "SQLState: " + ex.getSQLState());
             Log.e("mySQL", "VendorError: " + ex.getErrorCode());
         }
-
-        return null;
     }
 
-    private Void rozlacz() {
+    private void rozlacz() {
         try {
             conn.close();
         } catch (Exception ignored) {}
         conn = null;
-        return null;
     }
-    private Void pobierz_dane() {
+
+    private List<ProduktContent.Produkt> pobierz_dane() {
         Statement stmt = null;
         ResultSet rs = null;
+        ArrayList<ProduktContent.Produkt> list = new ArrayList<>();
         try {
             stmt = conn.createStatement();
-            stmt.setFetchSize(5);
-            rs = stmt.executeQuery("SELECT produkty.jedzenie.nazwa FROM produkty.jedzenie");
-            rs.first();
-            //((BazaProduktowActivity) ctx).tekst = rs.getString("nazwa");
-            //((BazaProduktowActivity) ctx).wyswietl();
-            Log.d("nazwa", rs.getString(1));
+            rs = stmt.executeQuery("SELECT produkty.jedzenie.* FROM produkty.jedzenie");
+            rs.beforeFirst();
+
+            while(rs.next()) {
+                // polskie znaki
+                String nazwa = new String(rs.getString(2).getBytes(Charset.forName("cp1252")));
+                //Log.d(this.getClass().getSimpleName(), "Mam: "+nazwa);
+                list.add(new ProduktContent.Produkt(rs.getInt(1), nazwa, rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getBoolean(7), rs.getBoolean(8)));
+            }
         } catch (SQLException ex) {
             Log.e("mySQL", "SQLException: " + ex.getMessage());
             Log.e("mySQL", "SQLState: " + ex.getSQLState());
@@ -120,6 +101,6 @@ class Baza extends AsyncTask<TYP, Void, Void> {
             }
         }
 
-        return null;
+        return list;
     }
 }
