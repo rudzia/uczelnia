@@ -20,12 +20,22 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <LinearLayout android:id="@+id/lista_produktow"
-        android:layout_marginTop="67dp"
+    <EditText
+        android:id="@+id/tv_szukaj"
+        android:layout_width="match_parent"
+        android:layout_height="40sp"
+        android:layout_marginTop="65dp"
+        android:layout_weight="1"
+        android:hint="@string/szukaj"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp" />
+
+    <LinearLayout
+        android:id="@+id/lista_produktow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-    </LinearLayout>
+        android:layout_marginTop="110dp"
+        android:orientation="vertical"></LinearLayout>
 
     <include layout="@layout/content_baza_produktow" />
 

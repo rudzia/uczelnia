@@ -50,6 +50,7 @@
     <string name="title_activity_dieta_alergie">Alergie pokarmowe</string>
     <string name="title_activity_baza_produktow">Baza produktów</string>
     <string name="title_activity_kalendarz2">Kalendarz2</string>
+    <string name="szukaj">Szukaj...</string>
 
 
 </resources>

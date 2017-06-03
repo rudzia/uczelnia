@@ -9,7 +9,7 @@ import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ExpandableListView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.alicja.dziennikdiety.modele.ProduktContent;
@@ -23,23 +23,23 @@ import java.util.List;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class ProduktFragment extends Fragment implements LoaderManager.LoaderCallbacks<List<ProduktContent.Produkt>> {
+public class ProduktWyborFragment extends Fragment implements LoaderManager.LoaderCallbacks<List<ProduktContent.Produkt>> {
 
     private OnListFragmentInteractionListener mListener;
-    private ProduktViewAdapter mAdapter;
+    private ProduktWyborAdapter mAdapter;
     private Baza loader;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public ProduktFragment() {
+    public ProduktWyborFragment() {
     }
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static ProduktFragment newInstance(int columnCount) {
-        ProduktFragment fragment = new ProduktFragment();
+    public static ProduktWyborFragment newInstance(int columnCount) {
+        ProduktWyborFragment fragment = new ProduktWyborFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -49,7 +49,7 @@ public class ProduktFragment extends Fragment implements LoaderManager.LoaderCal
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mAdapter = new ProduktViewAdapter(getContext(), new ArrayList<ProduktContent.Produkt>());
+        mAdapter = new ProduktWyborAdapter(getContext(), new ArrayList<ProduktContent.Produkt>());
     }
 
     @Override
@@ -63,10 +63,9 @@ public class ProduktFragment extends Fragment implements LoaderManager.LoaderCal
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_produkt_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_caly_produkt_list, container, false);
 
-        ((ExpandableListView) view).setAdapter(mAdapter);
-        ((ExpandableListView) view).setGroupIndicator(null);
+        ((ListView) view).setAdapter(mAdapter);
         return view;
     }
 
@@ -100,9 +99,9 @@ public class ProduktFragment extends Fragment implements LoaderManager.LoaderCal
             return;
         }
 
-        mAdapter = new ProduktViewAdapter(getContext(), data);
-        mAdapter.notifyDataSetChanged();
-        ((ExpandableListView) getView()).setAdapter(mAdapter);
+        mAdapter = new ProduktWyborAdapter(getContext(), data);
+        //mAdapter.notifyDataSetChanged();
+        ((ListView) getView()).setAdapter(mAdapter);
     }
 
     @Override
@@ -129,10 +128,10 @@ public class ProduktFragment extends Fragment implements LoaderManager.LoaderCal
     }
 
     public void przewin(String str) {
-        ExpandableListView list = ((ExpandableListView) getView());
+        ListView list = ((ListView) getView());
         int pos = mAdapter.znajdz(str);
         if (pos != -1) {
-            list.setSelectedGroup(pos);
+            list.setSelection(pos);
         }
     }
 }

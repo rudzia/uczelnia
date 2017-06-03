@@ -1,5 +1,8 @@
 package com.example.alicja.dziennikdiety.modele;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.bignerdranch.expandablerecyclerview.Model.ParentListItem;
 
 import java.util.ArrayList;
@@ -45,7 +48,7 @@ public class ProduktContent {
     /**
      * A dummy item representing a piece of content.
      */
-    public static class Produkt implements ParentListItem {
+    public static class Produkt implements ParentListItem,Parcelable {
         public final Integer id;
         public final String nazwa;
         public final String kcal;
@@ -55,7 +58,7 @@ public class ProduktContent {
         public final Boolean gluten;
         public final Boolean laktoza;
 
-        private List<Object> mChildrenItemList;
+        private List<Object> mChildrenItemList = null;
 
         public Produkt(Integer id, String nazwa, String kcal,
                        String weglowodany, String bialko, String tluszcz,
@@ -90,6 +93,44 @@ public class ProduktContent {
         public boolean isInitiallyExpanded() {
             return false;
         }
+
+        public int describeContents() {
+            return 0;
+        }
+
+        public void writeToParcel(Parcel out, int flags) {
+            out.writeInt(id);
+            out.writeString(nazwa);
+            out.writeString(kcal);
+            out.writeString(weglowodany);
+            out.writeString(bialko);
+            out.writeString(tluszcz);
+            out.writeInt(gluten ? 1 : 0);
+            out.writeInt(laktoza ? 1 : 0);
+        }
+
+        public static final Parcelable.Creator<Produkt> CREATOR
+                = new Parcelable.Creator<Produkt>() {
+            public Produkt createFromParcel(Parcel in) {
+                return new Produkt(in);
+            }
+
+            public Produkt[] newArray(int size) {
+                return new Produkt[size];
+            }
+        };
+
+        private Produkt(Parcel in) {
+            id = in.readInt();
+            nazwa = in.readString();
+            kcal = in.readString();
+            weglowodany = in.readString();
+            bialko = in.readString();
+            tluszcz = in.readString();
+            gluten = in.readInt() != 0;
+            laktoza = in.readInt() != 0;
+        }
+
     }
 
     public static class ProduktInfo {
