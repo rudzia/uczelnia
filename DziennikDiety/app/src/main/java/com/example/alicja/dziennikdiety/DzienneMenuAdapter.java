@@ -116,7 +116,9 @@ public class DzienneMenuAdapter extends BaseExpandableListAdapter {
             @Override
             public void onClick(View v) {
                 // TODO: okienko z potwierdzeniem?
+                Artykul art = getChild(groupPosition, childPosition);
                 usun(groupPosition, childPosition);
+                ((DzienneMenu) context).usunZBazy(art);
                 ((DzienneMenu) context).przelicz();
             }
         });

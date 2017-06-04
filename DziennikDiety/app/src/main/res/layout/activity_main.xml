@@ -28,13 +28,6 @@
             android:text="@string/dzien_dietyButton" />
 
         <Button
-            android:id="@+id/button_kalk_kalorii"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="click"
-            android:text="@string/title_activity_kalk_kalorii" />
-
-        <Button
             android:id="@+id/button_bazaProd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

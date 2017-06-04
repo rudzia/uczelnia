@@ -80,7 +80,7 @@ public class Baza extends AsyncTaskLoader<List<ProduktContent.Produkt>>{
                 // polskie znaki
                 String nazwa = new String(rs.getString(2).getBytes(Charset.forName("cp1252")));
                 //Log.d(this.getClass().getSimpleName(), "Mam: "+nazwa);
-                list.add(new ProduktContent.Produkt(rs.getInt(1), nazwa, rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getBoolean(7), rs.getBoolean(8)));
+                list.add(new ProduktContent.Produkt(rs.getInt(1), nazwa, rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), (rs.getInt(7)==1), (rs.getInt(8)==1)));
             }
         } catch (SQLException ex) {
             Log.e("mySQL", "SQLException: " + ex.getMessage());

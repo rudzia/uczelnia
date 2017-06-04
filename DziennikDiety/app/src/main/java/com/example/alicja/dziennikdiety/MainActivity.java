@@ -20,8 +20,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent;
         switch(view.getId())
         {
-            case R.id.button_kalk_kalorii:
-                break;
             case R.id.button_kalk_BMI:
                 intent = new Intent(MainActivity.this, kalkBMIActivity.class);
                 startActivity(intent);

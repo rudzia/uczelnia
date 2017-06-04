@@ -6,7 +6,6 @@
     <string name="wylogujButton">Wyloguj</string>
     <string name="dzien_dietyButton">Dziennik posiłków</string>
     <string name="limit_kaloriiButton">Limit Kalorii</string>
-    <string name="title_activity_kalk_kalorii">Kalkulator kalorii posiłku</string>
     <string name="title_activity_kalk_bmi">Kalkulator BMI</string>
     <string name="title_activity_kalendarz">Kalendarz</string>
     <string name="Waga">Podaj wagę [kg]:</string>
@@ -50,7 +49,7 @@
     <string name="title_activity_dieta_alergie">Alergie pokarmowe</string>
     <string name="title_activity_baza_produktow">Baza produktów</string>
     <string name="title_activity_kalendarz2">Kalendarz2</string>
-    <string name="szukaj">Szukaj...</string>
+    <string name="szukaj">Szukaj…</string>
 
 
 </resources>
