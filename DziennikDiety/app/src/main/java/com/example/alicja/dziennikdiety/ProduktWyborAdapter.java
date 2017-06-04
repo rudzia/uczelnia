@@ -110,10 +110,10 @@ public class ProduktWyborAdapter implements ListAdapter {
         iv_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.putExtra("produkt", getItem(position));
-                ((BazaProduktowWyborActivity) context).setResult(RESULT_OK, intent);
-                ((BazaProduktowWyborActivity) context).finish();
+                BazaProduktowWyborActivity bpwa = (BazaProduktowWyborActivity) context;
+                bpwa.intent = new Intent();
+                bpwa.intent.putExtra("produkt", getItem(position));
+                bpwa.wyborPorcji();
             }
         });
 

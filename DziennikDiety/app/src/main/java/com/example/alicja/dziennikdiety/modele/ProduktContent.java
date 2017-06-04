@@ -151,5 +151,16 @@ public class ProduktContent {
             this.gluten = gluten;
             this.laktoza = laktoza;
         }
+
+        public ProduktInfo(String kcal,
+                           String weglowodany, String bialko, String tluszcz,
+                           Boolean gluten, Boolean laktoza, float porcja) {
+            this.kcal = String.valueOf(Float.valueOf(kcal) * porcja/100);
+            this.weglowodany = String.valueOf(Float.valueOf(weglowodany) * porcja/100);
+            this.bialko = String.valueOf(Float.valueOf(bialko) * porcja/100);
+            this.tluszcz = String.valueOf(Float.valueOf(tluszcz) * porcja/100);
+            this.gluten = gluten;
+            this.laktoza = laktoza;
+        }
     }
 }

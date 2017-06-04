@@ -121,7 +121,7 @@ public class DzienneMenuAdapter extends BaseExpandableListAdapter {
             }
         });
 
-        tv.setText(posilek.getName()+"\n"+posilek.getInfo().kcal);
+        tv.setText(posilek.getName()+"\n"+posilek.getPortion()+" g");
 
         return convertView;
     }

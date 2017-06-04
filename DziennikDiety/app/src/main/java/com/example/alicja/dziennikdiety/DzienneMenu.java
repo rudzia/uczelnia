@@ -14,7 +14,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.Locale;
 
 public class DzienneMenu extends AppCompatActivity {
     DzienneMenuAdapter adapter;
@@ -25,7 +24,8 @@ public class DzienneMenu extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
             ProduktContent.Produkt prod = data.getParcelableExtra("produkt");
-            adapter.dodaj(new Artykul(nazwyPosilkow.get(requestCode), prod));
+            float porcja = data.getFloatExtra("porcja", 100);
+            adapter.dodaj(new Artykul(nazwyPosilkow.get(requestCode), prod, porcja));
             lista.expandGroup(requestCode);
             przelicz();
         }
@@ -44,12 +44,14 @@ public class DzienneMenu extends AppCompatActivity {
         rok = intent.getIntExtra("rok", 0);
 
         Calendar data = new GregorianCalendar(rok, miesiac, dzien);
-        SimpleDateFormat sdf = new SimpleDateFormat("EEEE,\n d MMMM y");
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
         toolbar.setTitle(sdf.format(data.getTime()));
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(sdf.format(data.getTime()));
+        sdf = new SimpleDateFormat("d MMMM y");
+        getSupportActionBar().setSubtitle(sdf.format(data.getTime()));
 
         ArrayList<ArrayList<Artykul>> listaArt = new ArrayList<ArrayList<Artykul>>();
 
