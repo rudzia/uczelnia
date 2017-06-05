@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -79,6 +80,33 @@
         <activity
             android:name=".BazaProduktowActivity"
             android:label="@string/title_activity_baza_produktow"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.alicja.dziennikdiety.MainActivity" />
+        </activity>
+        <activity
+            android:name=".BazaProduktowWyborActivity"
+            android:label="@string/title_activity_baza_produktow"
+            android:parentActivityName=".DzienneMenu"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.alicja.dziennikdiety.MainActivity" />
+        </activity>
+        <activity
+            android:name=".Rejestr"
+            android:label="@string/title_activity_rejestr"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.alicja.dziennikdiety.MainActivity" />
+        </activity>
+        <activity
+            android:name=".Udane_logowanie"
+            android:label="@string/title_activity_udane_logowanie"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data

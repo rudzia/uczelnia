@@ -26,7 +26,9 @@ public class LimitActivity extends AppCompatActivity {
     private Integer K_czy_M;
     private Integer aktywnosc;
     private double PPM;
-    private double CPM;
+    private double CPM1;
+    private double CPM2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -37,7 +39,7 @@ public class LimitActivity extends AppCompatActivity {
         wiekTextEdit = (EditText)findViewById(R.id.editTextWiek);
         wagaTextEdit = (EditText)findViewById(R.id.editTextWaga);
         wzrostTextEdit = (EditText)findViewById(R.id.editTextWzrost);
-        WynikPPM = (TextView)findViewById(R.id.textViewWynikPPM);
+        //WynikPPM = (TextView)findViewById(R.id.textViewWynikPPM);
         WynikCPM = (TextView)findViewById(R.id.textViewWynikCPP);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -81,24 +83,28 @@ public class LimitActivity extends AppCompatActivity {
             PPM = 66.47 + (13.75*waga)+(5*wzrost)-(6.75*wiek);
         }
 
-        int wynikPPM = ((int) (PPM+0.5));
-        String tekstPPM = String.valueOf(wynikPPM) + " kcal";
-        WynikPPM.setText(tekstPPM);
+        //int wynikPPM = ((int) (PPM+0.5));
+       // String tekstPPM = String.valueOf(wynikPPM) + " kcal";
+        //WynikPPM.setText(tekstPPM);
 
         if(aktywnosc == 0)
         {
-            CPM = PPM*1.5;
+            CPM1 = PPM*1.4;
+            CPM2 = PPM*1.5;
         }
         else if(aktywnosc == 1)
         {
-            CPM = PPM*1.8;
+            CPM1 = PPM*1.7;
+            CPM2 = PPM*1.9;
         }
         else if(aktywnosc == 2)
         {
-            CPM = PPM*2.2;
+            CPM1 = PPM*2.2;
+            CPM2 = PPM*2.4;
         }
-        int wynikCPM = ((int) (CPM + 0.5));
-        String tekstCPM = String.valueOf(wynikCPM) + " kcal";
+        int wynikCPM1 = ((int) (CPM1 + 0.5));
+        int wynikCPM2 = ((int) (CPM2 + 0.5));
+        String tekstCPM = String.valueOf(wynikCPM1) + "-" + String.valueOf(wynikCPM2) + " kcal";
         WynikCPM.setText(tekstCPM);
     }
 }

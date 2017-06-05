@@ -1,6 +1,7 @@
 package com.example.alicja.dziennikdiety;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,12 +57,12 @@ public class DzienneMenuAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public Object getGroup(int groupPosition) {
+    public String getGroup(int groupPosition) {
         return groups.get(groupPosition);
     }
 
     @Override
-    public Object getChild(int groupPosition, int childPosition) {
+    public Artykul getChild(int groupPosition, int childPosition) {
         return children.get(groupPosition).get(childPosition);
     }
 
@@ -93,9 +94,8 @@ public class DzienneMenuAdapter extends BaseExpandableListAdapter {
         iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: okienko wyboru produktu
-                dodaj(new Artykul(group, new ProduktContent.Produkt(2, "Dodany", "123", "234", "345", "456", false, true)));
-                ((DzienneMenu) context).lista.expandGroup(groupPosition);
+                Intent intent = new Intent(context, BazaProduktowWyborActivity.class);
+                ((DzienneMenu) context).startActivityForResult(intent, groupPosition);
             }
         });
 
@@ -116,11 +116,14 @@ public class DzienneMenuAdapter extends BaseExpandableListAdapter {
             @Override
             public void onClick(View v) {
                 // TODO: okienko z potwierdzeniem?
+                Artykul art = getChild(groupPosition, childPosition);
                 usun(groupPosition, childPosition);
+                ((DzienneMenu) context).usunZBazy(art);
+                ((DzienneMenu) context).przelicz();
             }
         });
 
-        tv.setText(posilek.getName()+"\n"+posilek.getInfo().kcal);
+        tv.setText(posilek.getName()+"\n"+posilek.getPortion()+" g");
 
         return convertView;
     }

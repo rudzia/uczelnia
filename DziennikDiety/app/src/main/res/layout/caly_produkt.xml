@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_nazwa_produktu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:layout_toLeftOf="@+id/iv_produkt_info"
+            android:layout_toStartOf="@+id/iv_produkt_info"
+            android:gravity="start"
+            android:textAlignment="viewStart"
+            android:textAppearance="?attr/textAppearanceListItem" />
+
+        <ImageView
+            android:id="@+id/iv_wybierz_produkt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="8dp"
+            android:src="@android:drawable/ic_input_add" />
+    </RelativeLayout>
+    <include layout="@layout/fragment_produkt_info" />
+</LinearLayout>

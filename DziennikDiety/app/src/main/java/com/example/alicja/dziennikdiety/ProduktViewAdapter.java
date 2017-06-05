@@ -138,5 +138,14 @@ public class ProduktViewAdapter extends BaseExpandableListAdapter {
         return true;
     }
 
+    public int znajdz(String co) {
+        for (int i=0; i<groups.size(); i++) {
+            if(groups.get(i).nazwa.toLowerCase().startsWith(co.toLowerCase())) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
 }
 

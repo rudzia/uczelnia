@@ -18,7 +18,8 @@
         app:layout_constraintHorizontal_bias="0.629"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/linearLayout4">
 
         <Button
             android:id="@+id/button_dzien_diety"
@@ -26,13 +27,6 @@
             android:layout_height="wrap_content"
             android:onClick="click"
             android:text="@string/dzien_dietyButton" />
-
-        <Button
-            android:id="@+id/button_kalk_kalorii"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="click"
-            android:text="@string/title_activity_kalk_kalorii" />
 
         <Button
             android:id="@+id/button_bazaProd"
@@ -69,5 +63,26 @@
             android:onClick="click"
             android:text="@string/action_sign_in" />
 
+        <Button
+            android:id="@+id/button_rejestr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="click"
+            android:text="@string/action_rejestr" />
+
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textViewPowitanie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="18dp"
+        android:textAlignment="center"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
+        app:layout_constraintHorizontal_bias="0.0" />
+
 </android.support.constraint.ConstraintLayout>

@@ -6,7 +6,6 @@
     <string name="wylogujButton">Wyloguj</string>
     <string name="dzien_dietyButton">Dziennik posiłków</string>
     <string name="limit_kaloriiButton">Limit Kalorii</string>
-    <string name="title_activity_kalk_kalorii">Kalkulator kalorii posiłku</string>
     <string name="title_activity_kalk_bmi">Kalkulator BMI</string>
     <string name="title_activity_kalendarz">Kalendarz</string>
     <string name="Waga">Podaj wagę [kg]:</string>
@@ -21,7 +20,7 @@
     <string name="AktywnoscUmiark">Umiarkowana</string>
     <string name="AktywnoscWysok">Wysoka</string>
     <string name="PPM">Podstawowa przemiana materii:</string>
-    <string name="CPM">Całkowita przemiana materii:</string>
+    <string name="CPM">Limit kalorii:</string>
 
     <string name="Twoja_dieta">Alergie pokarmowe</string>
     <string name="Bezlaktozowa">bezlaktozowa</string>
@@ -37,7 +36,9 @@
     <!-- Strings related to login -->
     <string name="podaj_login">Podaj login</string>
     <string name="podaj_haslo">Podaj hasło</string>
-    <string name="action_sign_in">Zaloguj się lub zarejestruj</string>
+    <string name="action_sign_in">Zaloguj</string>
+    <string name="button_rejestr">Rejestracja</string>
+    <string name="action_rejestr">Zarejestruj konto</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
@@ -50,6 +51,10 @@
     <string name="title_activity_dieta_alergie">Alergie pokarmowe</string>
     <string name="title_activity_baza_produktow">Baza produktów</string>
     <string name="title_activity_kalendarz2">Kalendarz2</string>
+    <string name="szukaj">Szukaj…</string>
+    <string name="title_activity_rejestracja">rejestracja</string>
+    <string name="title_activity_rejestr">Rejestr</string>
+    <string name="title_activity_udane_logowanie">Udane_logowanie</string>
 
 
 </resources>

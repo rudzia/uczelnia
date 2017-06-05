@@ -7,15 +7,19 @@
     tools:context="com.example.alicja.dziennikdiety.DzienneMenu"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_dzien"
-        android:focusableInTouchMode="false"
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="16dp" />
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
 
     <ExpandableListView
         android:id="@+id/elv_dzienne_menu_lista"
@@ -26,5 +30,33 @@
         android:descendantFocusability="blocksDescendants"
         app:layout_constraintTop_toBottomOf="@+id/tv_dzien"
         tools:layout_editor_absoluteX="8dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorButton"
+        android:elevation="10dp"
+        android:orientation="vertical"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Podsumowanie"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="16dp" />
+
+        <TextView
+            android:id="@+id/tv_podsumowanie_dnia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="12sp"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="16dp" />
+    </LinearLayout>
 
 </LinearLayout>

@@ -11,9 +11,11 @@
         android:id="@+id/toolbar"
         android:layout_width="368dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
         android:background="?attr/colorPrimary"
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/AppTheme.PopupOverlay"
+        app:titleTextColor="@android:color/white"
         tools:layout_constraintTop_creator="1"
         tools:layout_editor_absoluteX="8dp" />
 
@@ -209,24 +211,6 @@
             android:background="@color/colorButton"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/textViewPPM"
-                android:layout_width="203dp"
-                android:layout_height="match_parent"
-                android:background="@color/colorButton"
-                android:text="@string/PPM"
-                android:textColor="@android:color/background_dark"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/textViewWynikPPM"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:textColor="@android:color/background_dark"
-                android:textSize="18sp" />
-
         </LinearLayout>
     </ScrollView>
 
@@ -270,7 +254,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="43dp"
+        android:layout_marginTop="22dp"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -284,7 +268,7 @@
 
             <TextView
                 android:id="@+id/textView14"
-                android:layout_width="201dp"
+                android:layout_width="143dp"
                 android:layout_height="match_parent"
                 android:background="@color/colorButton"
                 android:text="@string/CPM"
