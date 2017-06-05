@@ -113,6 +113,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.alicja.dziennikdiety.MainActivity" />
         </activity>
+        <activity
+            android:name=".BazaProduktowWyborActivity"
+            android:label="@string/title_activity_baza_produktow"
+            android:parentActivityName=".DzienneMenu"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.alicja.dziennikdiety.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
