@@ -1,6 +1,0 @@
-﻿1>------ Build started: Project: odlEdycyjna, Configuration: Debug Win32 ------
-1>  odlEdycyjna.cpp
-1>d:\uczelnia\odledycyjna\odledycyjna\odledycyjna.cpp(207): warning C4101: 'isSameLetter': unreferenced local variable
-1>  odlEdycyjna.vcxproj -> D:\uczelnia\odlEdycyjna\Debug\odlEdycyjna.exe
-1>  odlEdycyjna.vcxproj -> D:\uczelnia\odlEdycyjna\Debug\odlEdycyjna.pdb (Full PDB)
-========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========

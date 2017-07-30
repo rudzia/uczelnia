@@ -9,17 +9,16 @@
 using namespace std;
 
 							//  A, C, T, G, -
-int similarityMetric[5][5]= { { 2, 0, 0, 0, -1 },     
-							  { 0, 2, 0, 0, -1 },
-							  { 0, 0, 2, 0, -1 },
-							  { 0, 0, 0, 2, -1 },
-							  { -1, -1, -1, -1, 0 } };
+int similarityMetric[5][5]= { { 8, 4, 0, -2, -2 },     
+							  { 4, 8, -2, -4, -2 },
+							  { 0, -2, 8, 6, -8 },
+							  { -2, -4, 6, 8, -4 },
+							  { -2, -2, -8, -4, 0 } };
+int distanceMetric[5][5]= { 
 
-int distanceMetric[5][5] = {{ 0, 1, 1, 1, 1 },
-							{ 1, 0, 1, 1, 1 },
-							{ 1, 1, 0, 1, 1 },
-							{ 1, 1, 1, 0, 1 },
-							{ 1, 1, 1, 1, 0 } };
+							{ 8, 10, 0, 2, 12 },
+							{ 10, 12, 2, 0, 8 },
+							{ 6, 6, 12, 8, 0 } };
 
 struct node
 {
@@ -264,7 +263,7 @@ int main()
 	string word1;
 	string word2;
 
-	fstream txtFile;
+	/*fstream txtFile;
 	txtFile.open("sequences.txt", ios::in | ios::out);
 	if (txtFile.is_open())
 	{
@@ -275,7 +274,11 @@ int main()
 		cout << word2 << endl;
 		txtFile.close();
 	}
-
+	*/
+	cout << "podaj pierwszy wyraz : " << endl;
+	cin >> word1;
+	cout << "podaj drugi wyraz: " << endl;
+	cin >> word2;
 	cout << '\n' << endl;
 	calculateEditDistance(word1, word2);
 	similarityWords(word1, word2);

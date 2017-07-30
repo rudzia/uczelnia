@@ -1,1 +1,12 @@
-﻿
+﻿  odlEdycyjna.cpp
+d:\uczelnia\odledycyjna\odledycyjna\odledycyjna.cpp(17): error C2059: syntax error: 'constant'
+d:\uczelnia\odledycyjna\odledycyjna\odledycyjna.cpp(19): error C2143: syntax error: missing ';' before '{'
+d:\uczelnia\odledycyjna\odledycyjna\odledycyjna.cpp(19): error C2447: '{': missing function header (old-style formal list?)
+d:\uczelnia\odledycyjna\odledycyjna\odledycyjna.cpp(19): error C2059: syntax error: ','
+d:\uczelnia\odledycyjna\odledycyjna\odledycyjna.cpp(20): error C2143: syntax error: missing ';' before '{'
+d:\uczelnia\odledycyjna\odledycyjna\odledycyjna.cpp(20): error C2447: '{': missing function header (old-style formal list?)
+d:\uczelnia\odledycyjna\odledycyjna\odledycyjna.cpp(20): error C2059: syntax error: ','
+d:\uczelnia\odledycyjna\odledycyjna\odledycyjna.cpp(21): error C2143: syntax error: missing ';' before '{'
+d:\uczelnia\odledycyjna\odledycyjna\odledycyjna.cpp(21): error C2447: '{': missing function header (old-style formal list?)
+d:\uczelnia\odledycyjna\odledycyjna\odledycyjna.cpp(21): error C2059: syntax error: '}'
+d:\uczelnia\odledycyjna\odledycyjna\odledycyjna.cpp(50): error C2065: 'distanceMetric': undeclared identifier
