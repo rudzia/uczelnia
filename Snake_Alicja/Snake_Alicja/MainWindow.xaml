@@ -19,19 +19,14 @@
             </Label>
             <Label x:Name="label_colors" Content="Choose snake color"  HorizontalAlignment="Left" Margin="10,251,0,0" VerticalAlignment="Top" Height="62" Width="268" FontSize="35" FontFamily="/Snake_Alicja;component/Fonts/#Chicken Butt"/>
             <TextBox x:Name="textBoxUser" HorizontalAlignment="Left" Height="70" Margin="301,166,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="225" Background="#FFCFF973" FontSize="25" TextChanged="textBoxUser_TextChanged" FontFamily="Rockwell Extra Bold"/>
-            <Button x:Name="button_start" Content="START GAME" HorizontalAlignment="Left" Margin="172,392,0,0" VerticalAlignment="Top" Width="278" Height="100" Click="button_start_Click" FontSize="30" FontWeight="Bold" BorderBrush="Black" FontFamily="Rockwell Extra Bold" ScrollViewer.CanContentScroll="True">
+            <Button x:Name="button_start" Content="START GAME" HorizontalAlignment="Left" Margin="120,337,0,0" VerticalAlignment="Top" Width="338" Height="126" Click="button_start_Click" FontSize="30" FontWeight="Bold" BorderBrush="Black" FontFamily="Rockwell Extra Bold" ScrollViewer.CanContentScroll="True">
                 <Button.Background>
                     <ImageBrush ImageSource="C:\Users\Alicja\Documents\Visual Studio 2015\Projects\Snake_Alicja\Snake_Alicja\snakeTexturejpg.jpg" Opacity="0.5" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
             <Label x:Name="labelSNAKE" Content="Snake" Style="{StaticResource CustomFont}" HorizontalAlignment="Center" Margin="221,0,172,0" VerticalAlignment="Top" FontSize="150" Height="161" Width="357"/>
             <Label x:Name="labelAutor" Content="Autor: Alicja Strąk, 2017" HorizontalAlignment="Left" Margin="0,532,0,-8" VerticalAlignment="Top" Width="195"/>
-            <Button x:Name="buttonLegend" Content="LEGEND" HorizontalAlignment="Left" Margin="171,330,0,0" VerticalAlignment="Top" Width="279" RenderTransformOrigin="0.5,0.5" Height="53" FontSize="25" FontWeight="Bold" FontFamily="Rockwell Extra Bold" BorderBrush="Black" Click="buttonLegend_Click">
-                <Button.Background>
-                    <ImageBrush ImageSource="C:\Users\Alicja\Documents\Visual Studio 2015\Projects\Snake_Alicja\Snake_Alicja\snakeTexturejpg.jpg" Opacity="0.5" Stretch="UniformToFill"/>
-                </Button.Background>
-            </Button>
-            <Button x:Name="buttonExit" Content="EXIT" HorizontalAlignment="Left" Margin="270,510,0,0" VerticalAlignment="Top" Width="77" Background="#FF7CA412" FontSize="20" FontFamily="Rockwell Extra Bold" Height="30" Click="buttonExit_Click" BorderBrush="#FF7CA412">
+            <Button x:Name="buttonExit" Content="EXIT" HorizontalAlignment="Left" Margin="234,491,0,0" VerticalAlignment="Top" Width="106" Background="#FF7CA412" FontSize="20" FontFamily="Rockwell Extra Bold" Height="49" Click="buttonExit_Click" BorderBrush="#FF7CA412">
 
             </Button>
             <ComboBox x:Name="comboBoxColors" HorizontalAlignment="Left" Margin="301,251,0,0" VerticalAlignment="Top" Width="225" RenderTransformOrigin="-0.483,-0.136" Height="62" Background="#FFCFF973" BorderBrush="#FFCFF973" FontSize="25" FontFamily="Rockwell Extra Bold">

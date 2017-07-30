@@ -10,7 +10,7 @@ namespace Snake_Alicja
     class Snake
     {
         public PartOfSnake HeadSnake { get; private set; }
-        public List<PartOfSnake> partsSnake = new List<PartOfSnake>();
+        public List<PartOfSnake> partsSnakeList = new List<PartOfSnake>();
         
         public Snake()
         {
@@ -24,26 +24,26 @@ namespace Snake_Alicja
             Grid.SetColumn(HeadSnake.Rectangle, HeadSnake.x);
             Grid.SetRow(HeadSnake.Rectangle, HeadSnake.y);
 
-            for (int i = 0; i < partsSnake.Count; i++)
+            for (int i = 0; i < partsSnakeList.Count; i++)
             {
-                partsSnake[i].Draw();
+                partsSnakeList[i].Draw();
             }
         }
         public PartOfSnake AddParts(int x, int y)
         {
             PartOfSnake part = new PartOfSnake(x, y);
-            partsSnake.Add(part);
+            partsSnakeList.Add(part);
             return part;
         }
 
         public void updateList(int xDirection, int yDirection)
         {
             PartOfSnake prev = new PartOfSnake(HeadSnake.x, HeadSnake.y);
-            for(int i = 0; i < partsSnake.Count; i++)
+            for(int i = 0; i < partsSnakeList.Count; i++)
             {
-                PartOfSnake tmp = new PartOfSnake(partsSnake[i].x, partsSnake[i].y);
-                partsSnake[i].x = prev.x;
-                partsSnake[i].y = prev.y;
+                PartOfSnake tmp = new PartOfSnake(partsSnakeList[i].x, partsSnakeList[i].y);
+                partsSnakeList[i].x = prev.x;
+                partsSnakeList[i].y = prev.y;
                 prev.x = tmp.x;
                 prev.y = tmp.y;
             }

@@ -64,9 +64,7 @@
     <Compile Include="PartOfSnake.cs" />
     <Compile Include="PremiumFood.cs" />
     <Compile Include="Snake.cs" />
-    <Compile Include="SnakeGame.xaml.cs">
-      <DependentUpon>SnakeGame.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="SnakeGame1.xaml.cs" />
     <Page Include="Legend.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
