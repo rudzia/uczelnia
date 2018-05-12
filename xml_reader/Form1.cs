@@ -15,11 +15,13 @@ using System.Text.RegularExpressions;
 using System.Diagnostics;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using System.Threading;
 
 namespace xml_reader
 {
     public partial class Form1 : Form
     {
+        Thread th;
         private
             XmlSerializer xmlserializer; //Object used for serialization and deserialization
             pola_skierowania skierowanie;//Object containing data from XML "skierowanie.xml"
@@ -802,9 +804,24 @@ namespace xml_reader
 
         private void button_NowyPlik_Click(object sender, EventArgs e)
         {
-            this.Hide();//how to close it?
-            Form1 newFile = new Form1();
-            newFile.Show();
+            //this.Hide();//how to close it?
+            //Form1 newFile = new Form1();
+            //newFile.Show();
+            this.Close();
+            th = new Thread(openNewForm);
+            th.SetApartmentState(ApartmentState.STA);
+            th.Start();
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void openNewForm(object o)
+        {
+            Application.Run(new Form1());
         }
     }
 
